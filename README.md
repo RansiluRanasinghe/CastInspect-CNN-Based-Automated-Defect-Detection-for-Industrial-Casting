@@ -1,0 +1,1 @@
+# CastInspect-CNN-Based-Automated-Defect-Detection-for-Industrial-Casting
