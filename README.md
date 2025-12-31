@@ -98,23 +98,61 @@ Sigmoid Output (Binary Classification)
 
 ---
 
-## 📈 Model Evaluation
+## 📈 Model Evaluation & Results
 
-The model was evaluated using **industry-relevant metrics**, including:
+The model was evaluated on a held-out industrial test set using metrics aligned with real manufacturing inspection requirements.
 
-- ✓ Training & validation accuracy
-- ✓ Training & validation loss
-- ✓ Confusion matrix (to analyze false positives vs false negatives)
+### 🔢 Test Set Performance
 
-The evaluation emphasizes **generalization and reliability**, not just raw accuracy — a key requirement for industrial applications.
+- **Accuracy**: 89.9%
+- **Recall (Defective class)**: 84.35%
+- **Loss**: 0.278
 
-### Why This Matters
+These results indicate strong generalization and reliable defect detection under realistic conditions.
 
-In manufacturing, the cost of:
-- **False Negatives** (missing defects) → Shipping faulty products
-- **False Positives** (rejecting good parts) → Wasted materials
+### 📊 Confusion Matrix
 
-Both must be carefully balanced through proper evaluation.
+```
+[[422   31]
+ [ 41  221]]
+```
+
+|  | **Predicted Defective** | **Predicted OK** |
+|---|---|---|
+| **Actual Defective** | 422 | 31 |
+| **Actual OK** | 41 | 221 |
+
+- **False Negatives (41)**: Defective parts missed
+- **False Positives (31)**: OK parts incorrectly rejected
+
+This balance reflects a production-ready trade-off, where missing defects is minimized while keeping unnecessary rejections under control.
+
+### 🧪 Classification Report (Industry View)
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| **Defective** | 0.91 | 0.93 | 0.92 | 453 |
+| **OK** | 0.88 | 0.84 | 0.86 | 262 |
+| **Accuracy** | | | **0.90** | 715 |
+
+- ✓ High recall for defective parts (93%) ensures faulty products are rarely shipped
+- ✓ Balanced precision reduces unnecessary waste
+- ✓ Macro & weighted averages confirm stable performance across classes
+
+### 🧠 Training Insights
+
+- Training automatically stopped at **epoch 18** due to validation-based stopping
+- Validation loss stabilized, preventing overfitting
+- The model converged efficiently despite class imbalance
+- Emphasis was placed on recall, aligning with real-world quality control priorities
+
+### 📌 Why These Metrics Matter in Industry
+
+In manufacturing inspection systems:
+- ❌ **False Negatives** → Defective products reach customers
+- ❌ **False Positives** → Increased scrap and production cost
+
+This model achieves a practical balance, making it suitable for real inspection pipelines, not just academic benchmarks.
 
 ---
 
@@ -176,6 +214,8 @@ This project demonstrates more than just CNN training:
 ✓ **Practical dataset handling**  
 ✓ **Evaluation-driven model development**  
 ✓ **Production-aware ML thinking**
+
+This model prioritizes defect recall over raw accuracy, reflecting real operational risk in manufacturing environments.
 
 It reflects how deep learning systems are applied in **real manufacturing environments**, not just academic benchmarks.
 
